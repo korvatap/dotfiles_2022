@@ -1,5 +1,11 @@
-local lspconfig = require("lspconfig")
-local on_attach = require("lsp-default-keybinds")
+local has_lspconfig, lspconfig = pcall(require, "lspconfig")
+if not has_lspconfig then
+    return
+end
+local has_keybinds, on_attach = pcall(require, "lsp-default-keybinds")
+if not has_keybinds then
+    return
+end
 
 lspconfig.sumneko_lua.setup {
     on_attach = on_attach,

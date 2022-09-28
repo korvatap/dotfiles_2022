@@ -29,11 +29,17 @@ o.termguicolors = true
 o.scrolloff = 8
 o.cmdheight = 2
 o.updatetime = 50
-vim.notify = require("notify")
+local has_notify, notify = pcall(require, "notify")
+if has_notify then
+    vim.notify = notify
+end
 vim.cmd [[set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·,space:·]]
 vim.cmd [[set shortmess+=c]]
 vim.cmd [[set background=dark]]
-vim.cmd [[colorscheme xcodedark]]
+local has_xcodedark, xcodedark = pcall(require, "xcodedark")
+if has_xcodedark then
+    vim.cmd [[colorscheme xcodedark]]
+end
 vim.cmd [[set colorcolumn=80]]
 
 vim.cmd[[let mapleader=" "]]

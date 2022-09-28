@@ -1,4 +1,7 @@
-local action = require("lspsaga.action")
+local has_action, action = pcall(require, "lspsaga.action")
+if not has_action then
+    return
+end
 
 -- Lsp finder
 --vim.keymap.set("n", "<C-g><C-h>", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })

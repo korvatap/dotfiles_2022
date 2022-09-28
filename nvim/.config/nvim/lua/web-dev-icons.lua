@@ -1,4 +1,9 @@
-require'nvim-web-devicons'.setup {
+local has_dev_icons, dev_icons = pcall(require, "nvim-web-devicons")
+if not has_dev_icons then
+    return
+end
+
+dev_icons.setup {
  -- your personnal icons can go here (to override)
  -- DevIcon will be appended to `name`
  --override = {
@@ -7,8 +12,8 @@ require'nvim-web-devicons'.setup {
     -- color = "#428850",
     --name = "Zsh"
   --}
- }
+-- }
  -- globally enable default icons (default to false)
  -- will get overriden by `get_icons` option
  --default = true;
---}
+}

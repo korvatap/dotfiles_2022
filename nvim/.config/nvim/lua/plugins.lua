@@ -1,7 +1,10 @@
 -- plugins.lua
 
 vim.cmd [[packadd vimball]]
-local packer = require('packer')
+local has_packer, packer = pcall(require, "packer")
+if not has_packer then
+    return
+end
 local use = packer.use
 
 return packer.startup(function()

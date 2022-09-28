@@ -1,5 +1,9 @@
 local home = os.getenv('HOME')
-local db = require('dashboard')
+local has_db, db = pcall(require, "dashboard")
+
+if not has_db then
+    return
+end
 
 db.default_banner = {
     '',

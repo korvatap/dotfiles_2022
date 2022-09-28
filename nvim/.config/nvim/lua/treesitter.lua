@@ -1,4 +1,9 @@
-require'nvim-treesitter.configs'.setup {
+local has_tsconfig, tsconfigs = pcall(require, "nvim-treesitter.configs")
+if not has_tsconfig then
+    return
+end
+
+tsconfigs.setup {
   highlight = { enable = true },
   incremental_selection = { enable = true },
   locals = { enable = true },

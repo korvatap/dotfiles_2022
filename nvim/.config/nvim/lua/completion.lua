@@ -15,10 +15,14 @@ vim.api.nvim_set_keymap(
   { noremap = true }
 )
 
-local lspkind = require "lspkind"
+local has_lspkind, lspkind = pcall(require, "lspkind")
+if not has_lspkind then
+    return
+end
+
 lspkind.init()
 
-local cmp = require "cmp"
+local has_cmp, cmp = pcall(require, "cmp")
 
 cmp.setup {
     window = {
@@ -123,7 +127,11 @@ _ = vim.cmd [[
 ]]
 
 -- nvim-cmp highlight groups.
-local Color, colors, Group, styles = require("colorbuddy.").setup()
+local has_colorbuddy, colorbuddy = pcall(require, "colorbuddy")
+if not has_colorbuddy then
+    return
+end
+local Color, colors, Group, styles = colorbuddy.setup()
 
 Color.new('background',  '#282c34')
 Color.new('red',         '#cc6666')

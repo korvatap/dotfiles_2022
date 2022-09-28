@@ -1,5 +1,10 @@
 vim.opt.laststatus = 3
 
+local has_el, el = pcall(require, "el")
+if not has_el then
+    return
+end
+
 local builtin = require "el.builtin"
 local extensions = require "el.extensions"
 local sections = require "el.sections"
