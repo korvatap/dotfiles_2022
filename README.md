@@ -15,3 +15,10 @@ Execute `stow nvim`. This will create symlinks from inside the nvim folder to $H
 ## Nvim
 - Install Package manager: [packer](https://github.com/wbthomason/packer.nvim#quickstart)
 - Execute `PackerSync` to install all packages
+
+### Checkhealth
+You might want to run :checkhealth on the first run and make sure everything is showing OK
+
+### Treesitter
+You need to install C compiler and libstdc++ library.
+See here: [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter#requirements)

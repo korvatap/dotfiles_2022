@@ -88,11 +88,12 @@ cmp.setup {
     sources = {
         -- { name = "gh_issues" }
         { name = "nvim_lsp_signature_help" },
-        { name = "cmp_tabnine" },
+--        { name = "cmp_tabnine" },
         { name = "nvim_lua" },
         { name = "nvim_lsp" },
-        { name = "path" },
         { name = "luasnip" },
+        { name = "path" },
+        { name = "text"},
         { name = "buffer", keyword_length = 3 },
     },
     snippet = {

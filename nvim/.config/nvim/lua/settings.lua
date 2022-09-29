@@ -29,16 +29,20 @@ o.termguicolors = true
 o.scrolloff = 8
 o.cmdheight = 2
 o.updatetime = 50
+
 local has_notify, notify = pcall(require, "notify")
 if has_notify then
     vim.notify = notify
+    notify.setup({
+        background_colour = "#123123"
+    })
 end
 vim.cmd [[set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·,space:·]]
 vim.cmd [[set shortmess+=c]]
 vim.cmd [[set background=dark]]
-local has_xcodedark, xcodedark = pcall(require, "xcodedark")
-if has_xcodedark then
-    vim.cmd [[colorscheme xcodedark]]
+local has_xcode, result = pcall(vim.cmd, "colorscheme xcodedarkhc")
+if not has_xcode then
+    vim.cmd [[colorscheme desert]]
 end
 vim.cmd [[set colorcolumn=80]]
 

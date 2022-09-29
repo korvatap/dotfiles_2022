@@ -14,7 +14,8 @@ return packer.startup(function()
     --    use 'tweekmonster/startuptime.vim'
     use 'arzg/vim-colors-xcode'
     use 'neovim/nvim-lspconfig'
-    use 'williamboman/nvim-lsp-installer'
+    use 'williamboman/mason.nvim'
+    use 'williamboman/mason-lspconfig.nvim'
     use 'L3MON4D3/LuaSnip'
     use 'rafamadriz/friendly-snippets'
     use 'hrsh7th/nvim-cmp'
@@ -40,7 +41,10 @@ return packer.startup(function()
         config = function() require("nvim-autopairs").setup {} end
     }
     use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+    }
     use 'nvim-treesitter/playground'
     use 'j-hui/fidget.nvim'
     use {
