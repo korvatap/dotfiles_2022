@@ -12,13 +12,14 @@ local on_attach = function(_, bufnr)
     vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 
     local smallIndendFts = { "json", "jsonc", "javascript", "javascriptreact", "html", "css", "javascript.jsx",
-        "typescript", "typescriptreact", "typescript.tsx", "vue" }
+        "typescript", "typescriptreact", "typescript.tsx", "vue", "lua" }
 
     if smallIndendFts[vim.bo.filetype] then
-        vim.api.nvim_command('set tabstop=4');
-        vim.api.nvim_command('set softtabstop=4');
-        vim.api.nvim_command('set shiftwidth=4');
+        vim.api.nvim_command('set tabstop=2');
+        vim.api.nvim_command('set softtabstop=2');
+        vim.api.nvim_command('set shiftwidth=2');
     end
 end
 
 return on_attach
+

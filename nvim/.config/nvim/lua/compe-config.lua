@@ -1,6 +1,6 @@
 vim.o.completeopt = "menuone,noselect"
 
-require'compe'.setup {
+require 'compe'.setup {
   enabled = true;
   autocomplete = true;
   debug = false;
@@ -45,5 +45,3 @@ require'compe'.setup {
 --vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
 --vim.api.nvim.set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 --vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
-
-

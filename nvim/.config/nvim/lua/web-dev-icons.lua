@@ -1,5 +1,6 @@
 local has_dev_icons, dev_icons = pcall(require, "nvim-web-devicons")
 if not has_dev_icons then
+  vim.notify("Could not require nvim-web-devicons. Exiting web-dev-icons.lua")
     return
 end
 

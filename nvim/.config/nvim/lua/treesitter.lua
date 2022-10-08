@@ -1,6 +1,7 @@
 local has_tsconfig, tsconfigs = pcall(require, "nvim-treesitter.configs")
 if not has_tsconfig then
-    return
+  vim.notify("Could not load nvim-treesitter.config. Exiting treesitter.lua")
+  return
 end
 
 tsconfigs.setup {

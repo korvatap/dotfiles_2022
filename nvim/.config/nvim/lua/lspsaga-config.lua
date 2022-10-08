@@ -1,8 +1,3 @@
-local has_action, action = pcall(require, "lspsaga.action")
-if not has_action then
-    return
-end
-
 -- Lsp finder
 --vim.keymap.set("n", "<C-g><C-h>", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
 
@@ -34,11 +29,3 @@ vim.keymap.set("n", "<C-p><C-d>", "<cmd>Lspsaga preview_definition<CR>", { silen
 -- Docs
 vim.keymap.set("n", "<C-h><C-d>", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
 
--- Scrolling in menus
-vim.keymap.set("n", "<C-f>", function()
-    action.smart_scroll_with_saga(1)
-end, { silent = true })
--- scroll up hover doc
-vim.keymap.set("n", "<C-b>", function()
-    action.smart_scroll_with_saga(-1)
-end, { silent = true })

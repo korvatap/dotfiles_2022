@@ -1,8 +1,9 @@
 vim.opt.laststatus = 3
 
-local has_el, el = pcall(require, "el")
+local has_el, _ = pcall(require, "el")
 if not has_el then
-    return
+  vim.notify("Could not require el. Exiting statusline.lua")
+  return
 end
 
 local builtin = require "el.builtin"
@@ -71,51 +72,51 @@ end
 local diagnostic_display = diagnostic.make_buffer()
 
 require('el').setup {
-    generator = function(_, _)
+  generator = function(_, _)
 
-        local mode = extensions.gen_mode { format_string = " %s " }
+    local mode = extensions.gen_mode { format_string = " %s " }
 
-        local items = {
-            { mode, required = true },
-            { git_branch },
-            { " " },
-            { sections.split, required = true },
-            { git_icon },
-            { sections.maximum_width(builtin.file_relative, 0.60), required = true },
-            { sections.collapse_builtin { { " " }, { builtin.modified_flag } } },
-            { sections.split, required = true },
-            { diagnostic_display },
-            { show_current_func },
-            -- { lsp_statusline.server_progress },
-            -- { ws_diagnostic_counts },
-            { git_changes },
-            { "[" },
-            { builtin.line_with_width(3) },
-            { ":" },
-            { builtin.column_with_width(2) },
-            { "]" },
-            {
-                sections.collapse_builtin {
-                  "[",
-                  builtin.help_list,
-                  builtin.readonly_list,
-                  "]",
-                },
-            },
-            { builtin.filetype },
-        }
+    local items = {
+      { mode, required = true },
+      { git_branch },
+      { " " },
+      { sections.split, required = true },
+      { git_icon },
+      { sections.maximum_width(builtin.file_relative, 0.60), required = true },
+      { sections.collapse_builtin { { " " }, { builtin.modified_flag } } },
+      { sections.split, required = true },
+      { diagnostic_display },
+      { show_current_func },
+      -- { lsp_statusline.server_progress },
+      -- { ws_diagnostic_counts },
+      { git_changes },
+      { "[" },
+      { builtin.line_with_width(3) },
+      { ":" },
+      { builtin.column_with_width(2) },
+      { "]" },
+      {
+        sections.collapse_builtin {
+          "[",
+          builtin.help_list,
+          builtin.readonly_list,
+          "]",
+        },
+      },
+      { builtin.filetype },
+    }
 
-        local add_item = function(result, item)
-            table.insert(result, item)
-        end
+    local add_item = function(result, item)
+      table.insert(result, item)
+    end
 
-        local result = {}
-        for _, item in ipairs(items) do
-          add_item(result, item)
-        end
+    local result = {}
+    for _, item in ipairs(items) do
+      add_item(result, item)
+    end
 
-        return result
-    end,
+    return result
+  end,
 }
 
 require("fidget").setup {

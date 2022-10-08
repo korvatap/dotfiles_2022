@@ -40,7 +40,7 @@ end
 vim.cmd [[set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·,space:·]]
 vim.cmd [[set shortmess+=c]]
 vim.cmd [[set background=dark]]
-local has_xcode, result = pcall(vim.cmd, "colorscheme xcodedarkhc")
+local has_xcode, _ = pcall(vim.cmd, "colorscheme xcodedarkhc")
 if not has_xcode then
     vim.cmd [[colorscheme desert]]
 end
@@ -53,13 +53,7 @@ vim.api.nvim_set_keymap('n', '<Leader>orc', ':e $MYVIMRC<CR>', { noremap = true,
 vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>r', ':NvimTreeRefresh<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>n', ':NvimTreeFindFile<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>ff', '<CMD>Telescope find_files<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>fg', '<CMD>Telescope live_grep<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>fb', '<CMD>Telescope buffers<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>fh', '<CMD>Telescope help_tags<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<Leader>gg', ':LazyGit<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<M-h><M-m>', ':lua require("harpoon.mark").add_file()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<M-h><M-l>', ':lua require("harpoon.ui").toggle_quick_menu()<CR>', { noremap = true, silent = true })
 
 vim.api.nvim_exec(
 [[

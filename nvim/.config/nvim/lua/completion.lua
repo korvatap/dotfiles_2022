@@ -17,107 +17,112 @@ vim.api.nvim_set_keymap(
 
 local has_lspkind, lspkind = pcall(require, "lspkind")
 if not has_lspkind then
-    return
+  vim.notify("Could not load lspkind.nvim. Exiting completion.lua")
+  return
 end
 
 lspkind.init()
 
 local has_cmp, cmp = pcall(require, "cmp")
+if not has_cmp then
+  vim.notify("Could not load nvim-cmp. Exiting completion.lua")
+  return
+end
 
 cmp.setup {
-    window = {
+  window = {
 
-    },
-    mapping = {
-        ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
-        ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
-        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-e>"] = cmp.mapping.abort(),
-        ["<C-y>"] = cmp.mapping(
-            cmp.mapping.confirm {
-                behavior = cmp.ConfirmBehavior.Insert, 
-                select = true,
-            },
-            { "i", "c" }
-        ),
-        ["<c-space>"] = cmp.mapping {
-            i = cmp.mapping.complete(),
-            c = function(
+  },
+  mapping = {
+    ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+    ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-e>"] = cmp.mapping.abort(),
+    ["<C-y>"] = cmp.mapping(
+      cmp.mapping.confirm {
+        behavior = cmp.ConfirmBehavior.Insert,
+        select = true,
+      },
+      { "i", "c" }
+    ),
+    ["<c-space>"] = cmp.mapping {
+      i = cmp.mapping.complete(),
+      c = function(
                 _ --[[fallback]]
-                )
-                if cmp.visible() then
-                    if not cmp.confirm { select = true } then
-                        return
-                    end
-                else
-                    cmp.complete()
-                end
-            end,
-       },
-       ["<tab>"] = cmp.config.disable,
-       ["<c-q>"] = cmp.mapping.confirm {
-           behavior = cmp.ConfirmBehavior.Replace,
-           select = true,
-       },
+      )
+        if cmp.visible() then
+          if not cmp.confirm { select = true } then
+            return
+          end
+        else
+          cmp.complete()
+        end
+      end,
     },
-    sorting = {
-        comparators = {
-            cmp.config.compare.offset,
-            cmp.config.compare.exact,
-            cmp.config.compare.score,
+    ["<tab>"] = cmp.config.disable,
+    ["<c-q>"] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    },
+  },
+  sorting = {
+    comparators = {
+      cmp.config.compare.offset,
+      cmp.config.compare.exact,
+      cmp.config.compare.score,
 
-            function(entry1, entry2)
-                local _, entry1_under = entry1.completion_item.label:find "^_+"
-                local _, entry2_under = entry2.completion_item.label:find "^_+"
-                entry1_under = entry1_under or 0
-                entry2_under = entry2_under or 0
-                if entry1_under > entry2_under then
-                    return false
-                elseif entry1_under < entry2_under then
-                    return true
-                end
-            end,
+      function(entry1, entry2)
+        local _, entry1_under = entry1.completion_item.label:find "^_+"
+        local _, entry2_under = entry2.completion_item.label:find "^_+"
+        entry1_under = entry1_under or 0
+        entry2_under = entry2_under or 0
+        if entry1_under > entry2_under then
+          return false
+        elseif entry1_under < entry2_under then
+          return true
+        end
+      end,
 
-            cmp.config.compare.kind,
-            cmp.config.compare.sort_text,
-            cmp.config.compare.length,
-            cmp.config.compare.order,
-        },
+      cmp.config.compare.kind,
+      cmp.config.compare.sort_text,
+      cmp.config.compare.length,
+      cmp.config.compare.order,
     },
-    sources = {
-        -- { name = "gh_issues" }
-        { name = "nvim_lsp_signature_help" },
---        { name = "cmp_tabnine" },
-        { name = "nvim_lua" },
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-        { name = "path" },
-        { name = "text"},
-        { name = "buffer", keyword_length = 3 },
-    },
-    snippet = {
-        expand = function(args)
-            require("luasnip").lsp_expand(args.body)
-        end,
-    },
-    formatting = {
-        format = lspkind.cmp_format {
-            with_text = true,
-            menu = {
-                buffer = "[buf]",
-                nvim_lsp = "[LSP]",
-                nvim_lua = "[api]",
-                path = "[path]",
-                luasnip = "[snip]",
-                -- gh_issues = "[issues]"
-            },
-        }
-    },
-    experimental = {
-        native_menu = false,
-        ghost_text = true
-    },
+  },
+  sources = {
+    -- { name = "gh_issues" }
+    { name = "nvim_lsp_signature_help" },
+    --        { name = "cmp_tabnine" },
+    { name = "nvim_lua" },
+    { name = "nvim_lsp" },
+    { name = "luasnip" },
+    { name = "path" },
+    { name = "text" },
+    { name = "buffer", keyword_length = 3 },
+  },
+  snippet = {
+    expand = function(args)
+      require("luasnip").lsp_expand(args.body)
+    end,
+  },
+  formatting = {
+    format = lspkind.cmp_format {
+      with_text = true,
+      menu = {
+        buffer = "[buf]",
+        nvim_lsp = "[LSP]",
+        nvim_lua = "[api]",
+        path = "[path]",
+        luasnip = "[snip]",
+        -- gh_issues = "[issues]"
+      },
+    }
+  },
+  experimental = {
+    native_menu = false,
+    ghost_text = true
+  },
 }
 
 _ = vim.cmd [[
@@ -130,14 +135,15 @@ _ = vim.cmd [[
 -- nvim-cmp highlight groups.
 local has_colorbuddy, colorbuddy = pcall(require, "colorbuddy")
 if not has_colorbuddy then
-    return
+  vim.notify("Could not require colorbuddy.nvim. Exiting completion.lua")
+  return
 end
-local Color, colors, Group, styles = colorbuddy.setup()
+local Color, colors, Group = colorbuddy.setup()
 
-Color.new('background',  '#282c34')
-Color.new('red',         '#cc6666')
-Color.new('green',       '#99cc99')
-Color.new('yellow',      '#f0c674')
+Color.new('background', '#282c34')
+Color.new('red', '#cc6666')
+Color.new('green', '#99cc99')
+Color.new('yellow', '#f0c674')
 Color.new('pink', '#ffc0cb')
 Color.new('orange', '#ffa500')
 
