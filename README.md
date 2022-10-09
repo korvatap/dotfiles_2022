@@ -10,6 +10,7 @@ The files should be clone to a folder one level from home e.g `~/.dotfiles` in o
 Execute `git clone git@github.com:korvatap/dotfiles_2022.git ~/.dotfiles` to clone files
 
 ### Using Stow to install nvim files
+Navigate to `dotfiles` folder
 Execute `stow nvim`. This will create symlinks from inside the nvim folder to $HOME.
 
 ## Nvim
