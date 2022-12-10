@@ -1,0 +1,130 @@
+if status is-interactive
+    # Commands to run in interactive sessions can go here
+end
+
+function sudo
+    if test "$argv" = !!
+        eval command sudo $history[1]
+    else
+        command sudo $argv
+    end
+end
+
+function ..
+    cd ..
+end
+
+function cd..
+    cd ..
+end
+
+set -g theme_powerline_fonts no
+
+set --universal --export theme_nerd_fonts yes
+set --universal --export theme_color_scheme zenburn
+
+
+alias kube-prod='gcloud config configurations activate prod;kubectl config use-context prod'
+alias kube-test='gcloud config configurations activate test;kubectl config use-context test'
+alias kube-playgroud='gcloud config configurations activate playground;kubectl config use-context playground'
+alias kube-accounts-prod='gcloud config configurations activate storytel-accounts-prod;kubectl config use-context storytel-accounts-prod'
+alias kube-accounts-test='gcloud config configurations activate storytel-account-test;kubectl config use-context storytel-account-test'
+alias sql-tr-test='$HOME/./cloud_sql_proxy -instances=storytel-148812:europe-west1:turkish-invoice-sql=tcp:3356'
+alias sql-tr-prod='$HOME/./cloud_sql_proxy -instances=storytel-prod:europe-west1:tr-invoice-sql=tcp:3357'
+alias sql-uds-test='$HOME/./cloud_sql_proxy -instances=storytel-148812:europe-west1:user-document-store-sql=tcp:3358'
+alias sql-uds-prod='$HOME/./cloud_sql_proxy -instances=storytel-prod:europe-west1:user-document-store-sql:=cp:3359'
+alias sql-account-prod='$HOME/./cloud_sql_proxy -instances=storytel-prod:europe-west1:account-sql:=tcp:3360'
+alias sql-account-test='$HOME/./cloud_sql_proxy -instances=storytel-148812:europe-west1:account-sql:=tcp:3361'
+alias sql-store-test='$HOME/./cloud_sql_proxy -instances=storytel-148812:europe-west:store-provider-sql:=tcp:3362'
+alias sql-landing-test='$HOME/./cloud_sql_proxy -instances=storytel-148812:europe-west1:landing-page-provider-sql:=tcp:3363'
+alias sql-landing-prod='$HOME/./cloud_sql_proxy -instances=storytel-prod:europe-west1:landing-page-provider-sql:=tcp:3364'
+alias sql-user-pref-prod='$HOME/./cloud_sql_proxy -instances=storytel-prod:europe-west1:user-preferences-sql:=tcp:3365'
+alias sql-store-config-test='$HOME/./cloud_sql_proxy -instances=storytel-148812:europe-west1:store-config-sql:=tcp:3366'
+alias sql-store-config-prod='$HOME/./cloud_sql_proxy -instances=storytel-prod:europe-west1:store-config-sql:=tcp:3367'
+alias sql-evs-test='$HOME/./cloud_sql_proxy -instances=storytel-148812:europe-west1:email-validation-sql:=tcp:3368'
+alias sql-evs-prod='$HOME/./cloud_sql_proxy -instances=storytel-prod:europe-west1:email-validation-service:=tcp:3369'
+alias sql-mysql-1='$HOME/./cloud_sql_proxy -instances=storytel-148812:europe-west1:mysql-1:=tcp:3370'
+alias sql-store-provider-test='$HOME/./cloud_sql_proxy -instances=storytel-148812:europe-west1:store-provider-sql:=tcp:3371'
+alias sql-localization-prod='$HOME/./cloud_sql_proxy -instances=storytel-prod:europe-west1:locales-sql:=tcp:3372'
+alias sql-proxy-dir='$HOME/./cloud_sql_proxy -dir ~/sqlproxy'
+alias sql-bi-data='$HOME/./cloud_sql_proxy -instances=storytel-data:europe-west1:bi-data=tcp:3373'
+alias sql-stnode-prod='$HOME/./cloud_sql_proxy -instances=storytel-prod:europe-west1:stnode-mysql=tcp:3374'
+alias sql-entity-prod='$HOME/./cloud_sql_proxy -instances=storytel-prod:europe-west1:entity-sql=tcp:3375'
+alias sql-review-test='$HOME/./cloud_sql_proxy -instances=storytel-prod:europe-west1:reviews-sql=tcp:3376'
+alias sql-store-provider-prod='$HOME/./cloud_sql_proxy -instances=storytel-prod:europe-west1:store-provider-sql=tcp:3377'
+alias sql-product-store-test='$HOME/./cloud_sql_proxy -instances=storytel-148812:europe-west1:product-store=tcp:3378'
+alias sql-consumption-data-prod='$HOME/./cloud_sql_proxy -instances=storytel-prod:europe-west1:consumption-data-sql=tcp:3379'
+alias sql-product-store-prod='$HOME/./cloud_sql_proxy -instances=storytel-prod:europe-west1:product-store=tcp:3380'
+alias sql-ceis-prod='$HOME/./cloud_sql_proxy -instances=storytel-prod:europe-west1:ceis-sql=tcp:3381'
+alias sql-ceis-test='$HOME/./cloud_sql_proxy -instances=storytel-148812:europe-west1:ceis-sql=tcp:3390'
+alias sql-user-store-prod='$HOME/./cloud_sql_proxy -instances=storytel-prod:europe-west1:user-store-sql=tcp:3382'
+alias sql-store-product-provider-prod='$HOME/./cloud_sql_proxy -instances=storytel-prod:europe-west1:store-product-provider-sql=tcp:3383'
+alias sql-limited-subscription-service-prod='$HOME/./cloud_sql_proxy -instances=storytel-prod:europe-west1:limited-subscription-service-sql=tcp:3384'
+alias sql-apple-ias-service-test='$HOME/./cloud_sql_proxy -instances=storytel-148812:europe-west1:apple-ias-sql=tcp:3385'
+alias sql-apple-ias-service-prod='$HOME/./cloud_sql_proxy -instances=storytel-prod:europe-west1:apple-ias-sql=tcp:3386'
+alias sql-user-store-accounts-prod='$HOME/./cloud_sql_proxy -instances=storytel-accounts-prod:europe-west1:user-store-sql=tcp:3387'
+alias sql-user-store-accounts-test='$HOME/./cloud_sql_proxy -instances=storytel-accounts-test:europe-west1:user-store-sql=tcp:3388'
+alias sql-payments-test='$HOME/./cloud_sql_proxy -instances=storytel-148812:europe-west1:payments-mysql=tcp:3389'
+alias sql-test01='$HOME/./cloud_sql_proxy -instances=storytel-148812:europe-west1:bokilur-sql=tcp:3390'
+alias sql-subscription-store-test='$HOME/./cloud_sql_proxy -instances=storytel-148812:europe-west1:subscription-store=tcp:3311'
+alias sql-subscription-store-prod='$HOME/./cloud_sql_proxy -instances=storytel-prod:europe-west1:subscription-store=tcp:3391'
+alias sql-subscription-test='$HOME/./cloud_sql_proxy -instances=storytel-148812:europe-west1:subscription-sql=tcp:3392'
+alias sql-subscription-prod='$HOME/./cloud_sql_proxy -instances=storytel-prod:europe-west1:subscription-sql=tcp:3393'
+alias sql-stnode-test='$HOME/./cloud_sql_proxy -instances=storytel-148812:europe-west1:stnode-sql=tcp:3394'
+alias sql-google-ias-service-prod='$HOME/./cloud_sql_proxy -instances=storytel-prod:europe-west1:google-ias-sql=tcp:3396'
+alias stop-test-containers='docker rm (docker stop (docker ps -a -q --filter ancestor=storytel/mysql-57-test --format="{{.ID}}"));docker rm (docker stop (docker ps -a -q --filter ancestor=storytel/google-cloud-pubsub-emulator --format="{{.ID}}"))'
+
+# Git shortcuts
+alias gitaall='git add --all'
+alias gitdel='git branch --delete '
+alias gitcom='git commit'
+alias gitchk='git checkout'
+alias gitcln='git clone'
+alias gitreb='git rebase'
+alias gitstat='git status'
+alias gitstash='git stash'
+alias gitstashp='git stash pop'
+alias gitpull='git pull origin HEAD'
+alias gitpf='git pull && git fetch'
+alias gitpush='git push origin HEAD'
+alias gitaacapf='git add -A && git commit --amend --no-edit && git push origin HEAD --force'
+alias gitdev='git checkout development'
+alias gitdevp='git checkout develop'
+
+function sql-bokilur-prod-replica
+  gcloud config configurations activate prod && kubectl config use-context prod-2021 && $HOME/./cloud_sql_proxy -instances=storytel-sthp-prod:europe-west1:bokilur-prod-sql-replica-2=tcp:3395
+end
+
+function sql-bokilur-prod
+  gcloud config configurations activate prod && kubectl config use-context prod-2021 && $HOME/./cloud_sql_proxy -instances=storytel-sthp-prod:europe-west1:bokilur-prod-sql=tcp:3395
+end
+
+function gitct --description "gitct <branch name>"
+  if not set -q argv[1]
+    echo "The branch must be specified."
+  else if not string length -q -- "$argv[1]"
+    echo "The branch cannot be empty"
+  end
+
+  git checkout --track origin/$argv[1]
+end
+
+# kpf <service> <port>
+function kpf --description "kpf <service> <port>"
+  if not set -q argv[1]
+    echo "The service must be specified."
+  else if not string length -q -- "$argv[1]"
+    echo "The service cannot be empty"
+  end
+
+  if not set -q argv[2]
+    echo "The port must be specified."
+  else if not string length -q -- "$argv[1]"
+    echo "The port cannot be empty"
+  end
+
+  kubectl port-forward deployment/$argv[1] $argv[2]:80
+end
+
+set -x JAVA_HOME (/usr/libexec/java_home)
+

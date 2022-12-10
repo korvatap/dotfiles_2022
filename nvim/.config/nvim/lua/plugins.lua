@@ -45,8 +45,6 @@ packer.init {
 
 local use = packer.use
 
-vim.cmd [[ command! Spotify Spotify ]]
-
 return packer.startup(function()
   use 'wbthomason/packer.nvim'
 
@@ -59,7 +57,7 @@ return packer.startup(function()
     ft = { "markdown" },
     cmd = "MarkdownPreview"
   }
-  use 'arzg/vim-colors-xcode'
+  use {'arzg/vim-colors-xcode', config = "vim.cmd('colorscheme xcodedarkhc')"}
   use 'neovim/nvim-lspconfig'
   use 'williamboman/mason.nvim'
   use 'williamboman/mason-lspconfig.nvim'
@@ -79,19 +77,23 @@ return packer.startup(function()
   use 'tjdevries/complextras.nvim'
   use 'tjdevries/express_line.nvim'
   use 'saadparwaiz1/cmp_luasnip'
+  use { 'ionide/Ionide-vim', ft = {"fsharp"} }
   use 'rcarriga/nvim-notify'
   use 'lukas-reineke/virt-column.nvim'
   use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
   use {
     "windwp/nvim-autopairs",
-    config = function() require("nvim-autopairs").setup {} end
+    config = function() require("nvim-autopairs").setup {} end,
+    after = 'nvim-cmp'
   }
   use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
   use {
     'nvim-treesitter/nvim-treesitter',
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+    event = "BufWinEnter",
+    config = "require('treesitter')"
   }
-  use 'nvim-treesitter/playground'
+  use { 'nvim-treesitter/playground', cmd = "TSPlaygroundToggle", after = 'nvim-treesitter'}
   use 'j-hui/fidget.nvim'
   use {
     'romgrk/barbar.nvim',
@@ -109,7 +111,9 @@ return packer.startup(function()
   }
   use {
     'nvim-telescope/telescope.nvim',
-    requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } }
+    requires = { { 'nvim-lua/popup.nvim' }, { 'nvim-lua/plenary.nvim' } },
+    cmd = "Telescope",
+    config = "require('telescope-config')"
   }
   use {
     'ThePrimeagen/harpoon',
@@ -121,9 +125,11 @@ return packer.startup(function()
       'kyazdani42/nvim-web-devicons'
     },
     tag = 'nightly',
+    cmd = "NvimTreeToggle",
+    config = "require('ntree')"
   }
   use 'glepnir/dashboard-nvim'
-  use 'kdheepak/lazygit.nvim'
+  use { 'kdheepak/lazygit.nvim', cmd = "LazyGit" }
   use {
     'KadoBOT/nvim-spotify',
     requires = 'nvim-telescope/telescope.nvim',
@@ -139,13 +145,12 @@ return packer.startup(function()
       }
     end,
     run = 'make',
-    cmd = 'spotify'
+    cmd = 'Spotify'
   }
   use {
     "folke/which-key.nvim",
-    config = function()
-      require("which-key").setup {}
-    end
+    event = "BufWinEnter",
+    config = "require('which-key-config')"
   }
   use({
     "glepnir/lspsaga.nvim",

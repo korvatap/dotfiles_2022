@@ -29,13 +29,21 @@ lspconfig.jsonls.setup {
   on_attach = on_attach
 }
 
+lspconfig.pyright.setup {
+  on_attach = on_attach
+}
+
 local omnisharp_bin = "~/.local/share/nvim/lsp_servers/omnisharp/omnisharp/OmniSharp"
 
-lspconfig.omnisharp.setup {
-  cmd = { omnisharp_bin },
-  filetypes = { "cs", "vb" },
-  on_attach = on_attach
+--lspconfig.omnisharp.setup {
+ -- cmd = { omnisharp_bin },
+  --filetypes = { "cs", "vb" },
+  --on_attach = on_attach
   --    use_mono = true
+--}
+--
+lspconfig.csharp_ls.setup {
+  on_attach = on_attach
 }
 
 lspconfig.eslint.setup {
@@ -72,6 +80,14 @@ lspconfig.rust_analyzer.setup {
     }
   }
 }
+
+-- local fsautocomplete_bin = vim.fn.expand("~/.local/share/nvim/mason/packages/fsautocomplete/fsautocomplete")
+-- lspconfig.fsautocomplete.setup {
+--  cmd = { fsautocomplete_bin },
+-- }
+
+vim.g['fsharp#backend'] = "nvim"
+vim.g['fsharp#fsautocomplete_command'] = {'fsautocomplete'}
 
 local has_lspcolors, lspcolors = pcall(require, "lsp-colors")
 if not has_lspcolors then

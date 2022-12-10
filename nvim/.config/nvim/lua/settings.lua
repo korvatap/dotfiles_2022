@@ -22,7 +22,7 @@ o.wrap = false
 o.smartcase = true
 o.swapfile = false
 o.backup = false
-o.undodir = '~/.config/nvim/undodir'
+o.undodir = vim.fn.expand('~/.config/nvim/undodir')
 o.undofile = true
 o.incsearch = true
 o.termguicolors = true
@@ -40,10 +40,6 @@ end
 vim.cmd [[set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:·,trail:·,space:·]]
 vim.cmd [[set shortmess+=c]]
 vim.cmd [[set background=dark]]
-local has_xcode, _ = pcall(vim.cmd, "colorscheme xcodedarkhc")
-if not has_xcode then
-    vim.cmd [[colorscheme desert]]
-end
 vim.cmd [[set colorcolumn=80]]
 
 vim.cmd[[let mapleader=" "]]

@@ -5,3 +5,4 @@ if not has_nvim_tree then
 end
 
 nvim_tree.setup()
+
