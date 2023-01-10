@@ -86,7 +86,6 @@ return packer.startup(function()
     config = function() require("nvim-autopairs").setup {} end,
     after = 'nvim-cmp'
   }
-  use { 'tzachar/cmp-tabnine', run = './install.sh', requires = 'hrsh7th/nvim-cmp' }
   use {
     'nvim-treesitter/nvim-treesitter',
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
@@ -116,6 +115,10 @@ return packer.startup(function()
     config = "require('telescope-config')"
   }
   use {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' 
+  }
+  use {
     'ThePrimeagen/harpoon',
     require = { 'nvim-lua/plenary.nvim' }
   }
@@ -130,23 +133,6 @@ return packer.startup(function()
   }
   use 'glepnir/dashboard-nvim'
   use { 'kdheepak/lazygit.nvim', cmd = "LazyGit" }
-  use {
-    'KadoBOT/nvim-spotify',
-    requires = 'nvim-telescope/telescope.nvim',
-    config = function()
-      local spotify = require 'nvim-spotify'
-
-      spotify.setup {
-        -- default opts
-        status = {
-          update_interval = 10000, -- the interval (ms) to check for what's currently playing
-          format = '%s %t by %a' -- spotify-tui --format argument
-        }
-      }
-    end,
-    run = 'make',
-    cmd = 'Spotify'
-  }
   use {
     "folke/which-key.nvim",
     event = "BufWinEnter",

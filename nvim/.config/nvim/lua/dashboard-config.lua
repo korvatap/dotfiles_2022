@@ -1,4 +1,4 @@
-local home = os.getenv('HOME')
+local home = vim.fn.has('unix') and os.getenv('HOME') or os.getenv('UserProfile')
 local has_db, db = pcall(require, "dashboard")
 
 if not has_db then

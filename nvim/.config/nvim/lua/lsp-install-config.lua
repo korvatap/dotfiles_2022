@@ -21,7 +21,6 @@ mason_lspconfig.setup({
     "omnisharp",
     "eslint",
     "yamlls",
-    "hls",
     "pyright"
   }
 })

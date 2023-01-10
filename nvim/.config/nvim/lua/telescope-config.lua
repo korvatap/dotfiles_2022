@@ -4,8 +4,18 @@ if not has_telescope then
   return
 end
 
-telescope.setup {}
+telescope.setup {
+  extensions = {
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true,
+      override_file_sorter = true,
+      case_mode = "smart_case",
+    }
+  }
+}
 
+telescope.load_extension("fzf")
 telescope.load_extension("harpoon")
 telescope.load_extension("notify")
 
