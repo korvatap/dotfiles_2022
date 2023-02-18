@@ -36,4 +36,6 @@ See here: [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter#r
 7. Install [fzf](https://github.com/junegunn/fzf#windows)
 8. Install cmake
   - winget install kitware.cmake
-  
+
+### Fonts
+Found these amazing fonts: [SF-Mono-Nerd](https://github.com/epk/SF-Mono-Nerd-Font)
