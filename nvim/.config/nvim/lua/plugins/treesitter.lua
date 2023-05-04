@@ -15,7 +15,7 @@ return {
       indent = { enable = true },
       ensure_installed = {
         "lua", "rust", "c_sharp", "json", "css",
-        "dockerfile", "javascript", "help",
+        "dockerfile", "javascript", "vimdoc",
         "html", "markdown", "yaml"
       }
     }

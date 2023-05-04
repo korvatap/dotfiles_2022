@@ -21,6 +21,7 @@ return {
       ["<Leader>fb"] = { "<CMD>Telescope buffers<CR>", "Telescope Buffers" },
       ["<Leader>fh"] = { "<CMD>Telescope help_tags<CR>", "Telescope help_tags" },
       ["<Leader>fm"] = { "<CMD>Telescope harpoon marks<CR>", "Telescope harpoon marks" },
+      ["<Leader>fr"] = { "<CMD>lua vim.lsp.buf.format {async = true}<CR>", "Format file" },
     })
   end
 }
