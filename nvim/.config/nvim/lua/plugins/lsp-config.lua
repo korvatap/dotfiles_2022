@@ -76,7 +76,7 @@ return {
       lspconfig.yamlls.setup {
         filetypes = { "yml", "yaml" },
         on_attach = on_attach,
-        root_dir = util.find_git_ancestor
+        root_dir = lspconfig.util.find_git_ancestor
       }
   
       lspconfig.hls.setup {
