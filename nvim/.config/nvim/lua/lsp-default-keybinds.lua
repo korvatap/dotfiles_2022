@@ -9,7 +9,7 @@ local on_attach = function(_, bufnr)
     end, bufopts)
     vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-    vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+    vim.keymap.set('n', '<space>fo', function() vim.lsp.buf.format { async = true } end, bufopts)
 
     local smallIndendFts = { "json", "jsonc", "javascript", "javascriptreact", "html", "css", "javascript.jsx",
         "typescript", "typescriptreact", "typescript.tsx", "vue", "lua" }

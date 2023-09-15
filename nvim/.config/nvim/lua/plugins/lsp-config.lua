@@ -39,16 +39,24 @@ return {
       lspconfig.tsserver.setup {
         on_attach = on_attach
       }
+
+      local jsonCapabilities = vim.lsp.protocol.make_client_capabilities()
+      jsonCapabilities.textDocument.completion.completionItem.snippetSupport = true
   
       lspconfig.jsonls.setup {
-        on_attach = on_attach
+        on_attach = on_attach,
+        capabilities = jsonCapabilities,
+        root_dir = function(fname)
+        vim.notify(nvim_lsp.util.find_git_ancestor(fname))
+          return nvim_lsp.util.find_git_ancestor(fname) or vim.loop.os_homedir()
+        end
       }
   
       lspconfig.pyright.setup {
         on_attach = on_attach
       }
   
-      local omnisharp_bin = "~/.local/share/nvim/lsp_servers/omnisharp/omnisharp/OmniSharp"
+      --local omnisharp_bin = "~/.local/share/nvim/lsp_servers/omnisharp/omnisharp/OmniSharp"
   
       --lspconfig.omnisharp.setup {
       -- cmd = { omnisharp_bin },
@@ -67,7 +75,8 @@ return {
   
       lspconfig.yamlls.setup {
         filetypes = { "yml", "yaml" },
-        on_attach = on_attach
+        on_attach = on_attach,
+        root_dir = util.find_git_ancestor
       }
   
       lspconfig.hls.setup {
@@ -103,6 +112,7 @@ return {
   
       vim.g['fsharp#backend'] = "nvim"
       vim.g['fsharp#fsautocomplete_command'] = {'fsautocomplete'}
+
     end
   },
   {
