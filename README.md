@@ -37,5 +37,9 @@ See here: [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter#r
 8. Install cmake
   - winget install kitware.cmake
 
+Python needs to be installed:
+and then:
+python3 -m pip install gkeepapi keyring
+
 #### Fonts
 Found these amazing fonts: [SF-Mono-Nerd](https://github.com/epk/SF-Mono-Nerd-Font)
