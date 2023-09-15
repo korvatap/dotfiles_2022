@@ -4,6 +4,12 @@ if not has_lspconfig then
   return
 end
 
+local has_nvim_lsp, nvim_lsp = pcall(require, "nvim_lsp")
+if not has_nvim_lsp then
+  vim.notify("Could not require nvim_lsp. Exiting lsp-config.lua")
+  return
+end
+
 local has_keybinds, on_attach = pcall(require, "lsp-default-keybinds")
 if not has_keybinds then
   vim.notify("Could not require lsp-default-keybinds. Exiting lsp-config.lua")
@@ -25,15 +31,24 @@ lspconfig.tsserver.setup {
   on_attach = on_attach
 }
 
+local jsonCapabilities = vim.lsp.protocol.make_client_capabilities()
+jsonCapabilities.textDocument.completion.completionItem.snippetSupport = true
+
+
 lspconfig.jsonls.setup {
-  on_attach = on_attach
+  on_attach = on_attach,
+  capabilities = jsonCapabilities,
+  root_dir = function(fname)
+   vim.notify(nvim_lsp.util.find_git_ancestor(fname))
+    return nvim_lsp.util.find_git_ancestor(fname) or vim.loop.os_homedir()
+  end
 }
 
 lspconfig.pyright.setup {
   on_attach = on_attach
 }
 
-local omnisharp_bin = "~/.local/share/nvim/lsp_servers/omnisharp/omnisharp/OmniSharp"
+--local omnisharp_bin = "~/.local/share/nvim/lsp_servers/omnisharp/omnisharp/OmniSharp"
 
 --lspconfig.omnisharp.setup {
  -- cmd = { omnisharp_bin },
@@ -52,7 +67,8 @@ lspconfig.eslint.setup {
 
 lspconfig.yamlls.setup {
   filetypes = { "yml", "yaml" },
-  on_attach = on_attach
+  on_attach = on_attach,
+  root_dir = util.find_git_ancestor
 }
 
 lspconfig.hls.setup {
@@ -79,6 +95,11 @@ lspconfig.rust_analyzer.setup {
       },
     }
   }
+}
+
+lspconfig.sqlls.setup {
+  on_attach = on_attach
+
 }
 
 -- local fsautocomplete_bin = vim.fn.expand("~/.local/share/nvim/mason/packages/fsautocomplete/fsautocomplete")

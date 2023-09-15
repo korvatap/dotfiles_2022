@@ -21,6 +21,9 @@ wk.register({
   ["<Leader>ff"] = { "<CMD>Telescope find_files<CR>", "Telescope Find files" },
   ["<Leader>fg"] = { "<CMD>Telescope live_grep<CR>", "Telescope Live grep" },
   ["<Leader>fb"] = { "<CMD>Telescope buffers<CR>", "Telescope Buffers" },
+  ["<Leader>ft"] = { "<CMD>Telescope file_browser<CR>", "Telescope File Browser" },
+  ["<Leader>ftc"] = { "<CMD>Telescope file_browser path=%:p:h select_buffer=true<CR>", "Telescope File Browser - Current Buffer" },
+  ["<Leader>fc"] = { "<CMD> Telescope current_buffer_fuzzy_find fuzzy=false case_mode=ignore_case<CR>", "Telescope current buffer"},
   ["<Leader>fh"] = { "<CMD>Telescope help_tags<CR>", "Telescope help_tags" },
   ["<Leader>fm"] = { "<CMD>Telescope harpoon marks<CR>", "Telescope harpoon marks" },
 })

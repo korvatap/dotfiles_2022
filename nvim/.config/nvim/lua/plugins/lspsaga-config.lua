@@ -1,6 +1,5 @@
 return {
-    "glepnir/lspsaga.nvim",
-    branch = "main",
+    "nvimdev/lspsaga.nvim",
     config = function()
       local saga = require("lspsaga")
 
