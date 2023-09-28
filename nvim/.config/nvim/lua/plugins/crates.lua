@@ -1,3 +1,4 @@
 return {
-    'saecki/crates.nvim'
+    'saecki/crates.nvim',
+  ft = "rust"
 }

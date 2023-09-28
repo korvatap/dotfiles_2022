@@ -1,5 +1,5 @@
 return {
-    'tjdevries/colorbuddy.nvim',
+   'tjdevries/colorbuddy.nvim',
     config = function()
         -- nvim-cmp highlight groups.
         local colorbuddy = require("colorbuddy")
@@ -17,5 +17,6 @@ return {
         Group.new("CmpItemAbbrMatchFuzzy", colors.background)
         Group.new("CmpItemKind", colors.pink)
         Group.new("CmpItemMenu", colors.orange)
-    end
+    end,
+    event = "VeryLazy"
 }

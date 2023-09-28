@@ -23,5 +23,14 @@ if not has_lazy then
   return
 end
 
- lazy.setup('plugins')
+
+
+ lazy.setup({
+  spec = {
+    { import = "plugins" },
+  },
+  defaults = {
+    lazy = false
+  }
+})
 

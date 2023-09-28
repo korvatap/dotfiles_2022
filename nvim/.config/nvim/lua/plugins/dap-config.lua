@@ -1,6 +1,7 @@
 return {
   "mfussenegger/nvim-dap",
   dependencies = { "rcarriga/nvim-dap-ui" },
+  event = "VeryLazy",
   config = function()
     local home = vim.fn.has('unix') and os.getenv('HOME') or os.getenv('UserProfile')
     local dap = require("dap")
@@ -30,6 +31,5 @@ return {
         processId = require 'dap.utils'.pick_process,
       },
     }
-    
   end
 }

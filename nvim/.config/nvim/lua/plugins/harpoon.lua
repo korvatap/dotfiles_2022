@@ -5,5 +5,6 @@ return {
             save_on_toggle = true,
             enter_on_sendcmd = true,
         }
-    }
+    },
+  event = "VeryLazy"
 }
