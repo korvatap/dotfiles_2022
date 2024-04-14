@@ -13,10 +13,6 @@ Execute `git clone git@github.com:korvatap/dotfiles_2022.git ~/.dotfiles` to clo
 Navigate to `dotfiles` folder
 Execute `stow nvim`. This will create symlinks from inside the nvim folder to $HOME.
 
-## Nvim
-- Install Package manager: [packer](https://github.com/wbthomason/packer.nvim#quickstart)
-- Execute `PackerSync` to install all packages
-
 ### Checkhealth
 You might want to run :checkhealth on the first run and make sure everything is showing OK
 
